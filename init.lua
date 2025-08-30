@@ -87,9 +87,8 @@ P.S. You can delete this when you're done too. It's your config now! :)
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -252,7 +251,7 @@ require('lazy').setup({
     -- NOTE: Plugins can also be added by using a table,
     -- with the first argument being the link and the following
     -- keys can be used to configure plugin behavior/loading/etc.
-    --
+    opts = {rocks = {hererocks = false, enabled = false}},
     -- Use `opts = {}` to automatically pass options to a plugin's `setup()` function, forcing the plugin to be loaded.
     --
     -- Alternatively, use `config = function() ... end` for full control over the configuration.
@@ -476,7 +475,8 @@ require('lazy').setup({
                 {path = '${3rd}/luv/library', words = {'vim%.uv'}}
             }
         }
-    }, {
+    },
+    {
         -- Main LSP Configuration
         'neovim/nvim-lspconfig',
         dependencies = {
@@ -843,7 +843,8 @@ require('lazy').setup({
                 }
             }
         end
-    }, { -- Autoformat
+    },
+    { -- Autoformat
         'stevearc/conform.nvim',
         event = {'BufWritePre'},
         cmd = {'ConformInfo'},
@@ -886,7 +887,8 @@ require('lazy').setup({
                 javascript = {"prettierd", "prettier", stop_after_first = true}
             }
         }
-    }, { -- Autocompletion
+    },
+    { -- Autocompletion
         'saghen/blink.cmp',
         event = 'VimEnter',
         version = '1.*',
@@ -985,7 +987,8 @@ require('lazy').setup({
             -- Shows a signature help window while you type arguments for a function
             signature = {enabled = true}
         }
-    }, { -- You can easily change to a different colorscheme.
+    },
+    { -- You can easily change to a different colorscheme.
         -- Change the name of the colorscheme plugin below, and then
         -- change the command in the config to whatever the name of that colorscheme is.
         --
@@ -1012,7 +1015,8 @@ require('lazy').setup({
         event = 'VimEnter',
         dependencies = {'nvim-lua/plenary.nvim'},
         opts = {signs = false}
-    }, { -- Collection of various small independent plugins/modules
+    },
+    { -- Collection of various small independent plugins/modules
         'echasnovski/mini.nvim',
         config = function()
             -- Better Around/Inside textobjects
@@ -1048,7 +1052,8 @@ require('lazy').setup({
             -- ... and there is more!
             --  Check out: https://github.com/echasnovski/mini.nvim
         end
-    }, { -- Highlight, edit, and navigate code
+    },
+    { -- Highlight, edit, and navigate code
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
         main = 'nvim-treesitter.configs', -- Sets main module to use for opts
