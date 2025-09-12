@@ -1,0 +1,46 @@
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+
+-- Setup lazy.nvim
+require("lazy").setup({
+  spec = {
+    -- import your plugins
+    { import = "plugins" },
+  },
+  rocks = { enabled = false },
+  -- colorscheme that will be used when installing plugins.
+  install = { missing = true, colorscheme = { "habamax" } },
+  -- automatically check for plugin updates
+  checker = { enabled = true, notify = true },
+  -- automatically check for config changes
+  change_detection = { enabled = true, notify = false },
+  readme = { enabled = true },
+})
+
+require("conform").setup({
+  formatters_by_ft = {
+    lua = { "stylua", "lua-format", stop_after_first = true },
+    nix = { "nixfmt" },
+    go = { "goimports", "gofmt", stop_after_first = true },
+    python = { "isort", "black", stop_after_first = true },
+    rust = { "rustfmt", lsp_format = "fallback" },
+    javascript = { "prettierd", "prettier", stop_after_first = true },
+  },
+})
+
+-- auto launch lazy homescreen on startup
+require("lazy").home()
