@@ -70,6 +70,12 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 
+-- enable diagnostics
+vim.diagnostic.enable = true
+vim.diagnostic.config({
+  virtual_lines = true,
+})
+
 -- " Always use spaces insted of tabs
 vim.opt.expandtab = true
 

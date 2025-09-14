@@ -39,8 +39,9 @@ require("conform").setup({
     python = { "isort", "black", stop_after_first = true },
     rust = { "rustfmt", lsp_format = "fallback" },
     javascript = { "prettierd", "prettier", stop_after_first = true },
+    html = { "tidy -m" },
   },
 })
 
 -- auto launch lazy homescreen on startup
-require("lazy").home()
+--require("lazy").home()
