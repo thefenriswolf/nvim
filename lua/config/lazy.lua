@@ -31,17 +31,5 @@ require("lazy").setup({
   readme = { enabled = true },
 })
 
-require("conform").setup({
-  formatters_by_ft = {
-    lua = { "stylua", "lua-format", stop_after_first = true },
-    nix = { "nixfmt" },
-    go = { "goimports", "gofmt", stop_after_first = true },
-    python = { "isort", "black", stop_after_first = true },
-    rust = { "rustfmt", lsp_format = "fallback" },
-    javascript = { "prettierd", "prettier", stop_after_first = true },
-    html = { "tidy -m" },
-  },
-})
-
 -- auto launch lazy homescreen on startup
 --require("lazy").home()

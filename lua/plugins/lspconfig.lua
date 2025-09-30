@@ -26,5 +26,10 @@ return {
       cmd = { "gopls" },
     })
     vim.lsp.enable("gopls", true)
+    vim.lsp.config("omnisharp", {
+      root_markers = { "*.csproj" },
+      --  cmd = { "OmniSharp -lsp" },
+    })
+    vim.lsp.enable("omnisharp", true)
   end,
 }
