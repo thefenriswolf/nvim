@@ -2,6 +2,7 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   enabled = true,
+  lazy = false,
   dependencies = {
     -- completion engine
     { "saghen/blink.cmp" },
@@ -21,15 +22,24 @@ return {
     },
   },
   config = function()
+    -- GO
     vim.lsp.config("gopls", {
       root_markers = { "go.mod", ".git" },
       cmd = { "gopls" },
     })
     vim.lsp.enable("gopls", true)
+    -- C#
     vim.lsp.config("omnisharp", {
       root_markers = { "*.csproj" },
       --  cmd = { "OmniSharp -lsp" },
     })
     vim.lsp.enable("omnisharp", true)
+    -- Java
+    vim.lsp.config("jdtls", {
+      root_markers = { "build.gradle", "build.gradle.kts", "gradlew.bat", "pom.xml", ".git" },
+      filetypes = { "java" },
+      --cmd = { "jdtls" },
+    })
+    vim.lsp.enable("java_language_server", true)
   end,
 }

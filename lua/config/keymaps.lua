@@ -11,4 +11,15 @@ vim.keymap.set("n", "vs", "<C-W>v", { desc = "Vertical Split" })
 vim.keymap.set("n", "ss", "<C-W>s", { desc = "Horizontal Split" })
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>q", function()
+  vim.diagnostic.setloclist()
+end, { desc = "Open diagnostic [Q]uickfix list" })
+
+-- LSP remaps
+vim.keymap.set("n", "grh", function()
+  vim.lsp.buf.hover({
+    border = "single",
+    --max_height = 25,
+    --max_width = 120,
+  })
+end, { desc = "Display info in floating window" })
